@@ -9,8 +9,6 @@ const download = (url = "") => {
 
     if (url.startsWith('/UserUploadedFiles')) {
         url = 'https://api.tv-92.com' + url;
-    } else {
-        url = url.replace('cdn.s06.ir', 's3.tv-92.com').replace('iran-cdn.bzr01.ir', 's3.tv-92.com').replace('cdn.bzr01.ir', 's3.tv-92.com');
     }
 
 
@@ -23,9 +21,13 @@ const download = (url = "") => {
     });
 }
 
-(async() => {
-	for (var user of users) {
-    		await download(user.image);
-		console.log(user.image);
-	}
+(async () => {
+    for (var user of users) {
+        try {
+            await download(user.image);
+            console.log(user.image);
+        } catch (error) {
+
+        }
+    }
 })();

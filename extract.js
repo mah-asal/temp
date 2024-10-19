@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const endpoint = 'https://api.tv-92.com';
 const limit = 100;
-const max = 10;
+const max = 50;
 
 const fetchPosts = async (page = 0) => {
     try {

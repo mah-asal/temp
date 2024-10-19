@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const exists = async (url = "") => {
     if (url && url.startsWith('/UserUploadedFiles')) {
-        url = "https://s3.tv-92.com/uploads" + url;
+        url = "https://api.tv-92.com" + url;
     }
 
     if (url && url.startsWith('http') && !url.includes('static')) {
@@ -25,7 +25,7 @@ const fetchAllUsers = async () => {
     let output = [];
 
     for (var user of users) {
-        if (await exists(user.image) == false && !user.image.includes('.ir')) {
+        if (await exists(user.image) == false) {
             output.push(user);
             console.log(`User ${user.id} profile image is missing`);
             save(output);

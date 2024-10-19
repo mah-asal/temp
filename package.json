@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@elastic/elasticsearch": "^8.14.0",
-    "axios": "^1.7.3",
-    "minio": "^8.0.1"
-  }
-}

@@ -1,5 +1,3 @@
-const users = require('./users404.json');
-
 const { Client } = require('minio');
 const mimeTypes = require('mime-types');
 const path = require('path');
@@ -7,9 +5,9 @@ const fs = require('fs');
 
 const client = new Client({
     port: 443,
-    endPoint: "s3.tv-92.com",
-    accessKey: "UKLODowg867OkaPh9f2r",
-    secretKey: "638w0h4zruqEi5oHmSVZ0PUlTa1EwBOFxxDJaSvr",
+    endPoint: "s3.filiban.ir",
+    accessKey: "8UATYX4DFXPPKTKCE69Z",
+    secretKey: "U4k1yQ+W5iKkWbvf8013tEIhl9iPO+Os4ziCccVF",
 });
 
 const upload = (url = "") => {
@@ -30,10 +28,10 @@ const upload = (url = "") => {
 }
 
 (async () => {
-    for (var user of users) {
+    for (var user of fs.readdirSync('./uploads')) {
         try {
-            await upload(user.image);
-            
+            await upload(user);
+            fs.unlinkSync(path.join('./uploads', user));
         } catch (error) {
             console.error(error);
         }
