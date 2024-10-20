@@ -4,7 +4,14 @@ const axios = require('axios');
 
 const exists = async (url = "") => {
     if (url && url.startsWith('/UserUploadedFiles')) {
-        url = "https://api.tv-92.com" + url;
+        try {
+            const result = await axios.default.head('https://s3.tv-92.com/uploads' + url);
+
+            return Promise.resolve(result.status == 200);
+
+        } catch (error) {
+            return Promise.resolve(false);
+        }
     }
 
     if (url && url.startsWith('http') && !url.includes('static')) {
